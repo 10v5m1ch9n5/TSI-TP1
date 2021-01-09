@@ -4,5 +4,6 @@
 # LaTeX
 *.pdf
 *.synctex.gz
+*.log
 
 figures/

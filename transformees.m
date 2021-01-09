@@ -53,13 +53,32 @@ title('Transformée de Fourier du Sinus (partie imaginaire)')
 xlabel('Fréquence (Hz)')
 saveas(f2, 'figures/fig_sin.png')
 
-%% Fonction pic de Dirac
+%% Fonction pic de Dirac (sans décalage temporel)
 x3 = zeros(1,N); x3(1,N/2+1) = 1;
 
-fig_tf_dirac = figure('Name', 'TF du Dirac');
+f3 = figure('Name', 'TF du Dirac');
 X3 = real(tfour(x3));
 plot(freq, X3)
-title('Transformée de Fourier du Dirac')
+title('Transformée de Fourier du Dirac avec Δt = 0')
+xlabel('Fréquence (Hz)')
+saveas(f3, 'figures/fig_dirac_0.png')
+
+%% Fonction pic de Dirac (avec décalage temporel)
+delta_t = 0.005;
+x3d = zeros(1,N); x3d(1, N/2+1 - round(delta_t/Te)) = 1;
+
+X3d = tfour(x3d);
+f3d = figure('Name', 'Dirac avec décalage temporel');
+subplot(2,1,1)
+plot(freq, real(X3d))
+title(['Transformée de Fourier du Dirac avec Δt=',num2str(delta_t),' (partie réelle)'])
+xlabel('Fréquence (Hz)')
+
+subplot(2,1,2)
+plot(freq, imag(X3d))
+title(['Transformée de Fourier du Dirac avec Δt=',num2str(delta_t),' (partie imaginaire)'])
+xlabel('Fréquence (Hz)')
+saveas(f3d, 'figures/fig_dirac_deltat.png')
 
 %% Exponentielle complexe
 x4 = exp(1i*2*pi*f*range);

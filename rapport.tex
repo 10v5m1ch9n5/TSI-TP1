@@ -28,5 +28,19 @@ On considère la fonction $x_2=\sin(2\pi f_0 t)$ avec $f_0=4$, sa transformée d
 \end{figure}
 
 \subsubsection{Fonction pic de Dirac}
-On considère la fonction $x_3(t)=\delta(t-\Delta t)$
+On considère la fonction $x_3(t)=\delta(t-\Delta t)$, sa transformée de Fourier théorique est $X_3(f)=e^{-j2\pi f\Delta t}$. \\
+Lorsque $\Delta t$ est nul, nous constatons bien que la transformée de Fourier du Dirac est constante à $1$ :
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_dirac_0}
+\centering
+\end{figure} \\
+Tandis qu'avec un décalage temporel $\Delta t$ non nul, nous obtenons les courbes suivantes :
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_dirac_deltat}
+\centering
+\end{figure} \\
+Nous avons bien $Re(X_3(f))=\cos(2\pi f\Delta t)$ et $Im(X_3(f))=\sin(2\pi f\Delta t)$
+
+\subsubsection{Exponentielle complexe}
+On considère la fonction $x_4e^{j2\pi f t}$ qui a comme transformée de Fourier théorique
 \end{document}
