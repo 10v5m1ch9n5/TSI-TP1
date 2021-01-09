@@ -1,4 +1,4 @@
-%% Paramètres
+%% Initialisation des paramètres
 N = 32768;
 a = -5;
 b = 5;
@@ -6,7 +6,7 @@ Te = (b-a)/N;
 fe = 1/Te;
 range = a:Te:b-Te;
 freq = (-fe/2):(fe/N):(fe/2-fe/N);
-f = 2;
+f = 4;
 
 %% Fonction constante
 x0 = 42 * ones(1,N);
@@ -29,8 +29,9 @@ title('Fonction Cosinus')
 subplot(2,1,2)
 X1 = real(tfour(x1));
 plot(freq, X1);
-axis([-10 10 -10 10])
+axis([-10 10 -10 100])
 title('Transformée de Fourier du Cosinus (partie réelle)')
+saveas(f1, 'figures/fig_cos.png')
 
 %% Fonction sinus
 x2 = sin(2*pi*f*range);

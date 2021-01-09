@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {./figures/} }
+
+\title{TP MATLAB : Transformée de Fourier}
+\date{9 Janvier 2021}
+\author{Lucas LOISEAU \\ Alexandre SENOUCI \\ Maya BROYER \\ Lena BELIAZI}
+
+\begin{document}
+\maketitle
+\section{Transformée de Fourier discrète}
+Les signaux sont représentés sur l'intervalle $[-5,5]$. \\
+On fixe le nombre d'échantillons à $N=32768$. \\
+La période d'échantillonage vaut donc $T_e = 3,0518 * 10^{-4}$ et la fréquence d'échantillonage $f_e=3276,8$.11111
+\subsection{Echantillonage et spectre de fonctions usuelles}
+\subsubsection{Fonction cosinus}
+On considère la fonction $x_1(t)=\cos(2\pi f_0 t)$ avec $f_0=4$, sa transformée de Fourier théorique est $X_1(f)=\frac{1}{2}[\delta(f-f_0)+\delta(f+f_0)]$, il s'agit d'un nombre réel.
+\begin{figure}[h]
+\includegraphics[scale=0.35]{fig_cos}
+\centering
+\end{figure}
+
+\subsubsection{Fonction sinus}
+
+\end{document}

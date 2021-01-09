@@ -1,1 +1,7 @@
+# MATLAB
 *.asv
+
+# LaTeX
+*.pdf
+*.synctex.gz
+*.png
