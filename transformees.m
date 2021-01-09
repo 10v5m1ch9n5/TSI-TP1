@@ -1,4 +1,4 @@
-%% Initialisation des paramètres
+%% Initialisation
 N = 32768;
 a = -5;
 b = 5;
@@ -7,6 +7,7 @@ fe = 1/Te;
 range = a:Te:b-Te;
 freq = (-fe/2):(fe/N):(fe/2-fe/N);
 f = 4;
+mkdir figures
 
 %% Fonction constante
 x0 = 42 * ones(1,N);
@@ -24,12 +25,14 @@ x1 = cos(2*pi*f*range);
 f1 = figure('Name', 'Cosinus');
 subplot(2,1,1)
 plot(range, x1);
+xlabel('Temps (s)')
 title('Fonction Cosinus')
 
 subplot(2,1,2)
 X1 = real(tfour(x1));
 plot(freq, X1);
 axis([-10 10 -10 100])
+xlabel('Fréquence (Hz)')
 title('Transformée de Fourier du Cosinus (partie réelle)')
 saveas(f1, 'figures/fig_cos.png')
 
@@ -39,13 +42,16 @@ x2 = sin(2*pi*f*range);
 f2 = figure('Name', 'Sinus');
 subplot(2,1,1)
 plot(range, x2);
+xlabel('Temps (s)')
 title('Fonction Sinus')
 
 subplot(2,1,2)
 X2 = imag(tfour(x2));
 plot(freq, X2);
-axis([-10 10 -10 10])
+axis([-10 10 -500 500])
 title('Transformée de Fourier du Sinus (partie imaginaire)')
+xlabel('Fréquence (Hz)')
+saveas(f2, 'figures/fig_sin.png')
 
 %% Fonction pic de Dirac
 x3 = zeros(1,N); x3(1,N/2+1) = 1;
