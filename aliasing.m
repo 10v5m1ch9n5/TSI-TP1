@@ -1,3 +1,4 @@
+%% Initialiastion
 a = -5;
 b = 5;
 N = 32768;
@@ -7,6 +8,7 @@ range = a:Te:b-Te;
 freq = -fe/2:fe/N:(fe/2 - fe/N);
 f = 2250;
 
+%% G1000 et G2250
 fig = figure('Name', 'Echantillonage et aliasing');
 subplot(2,1,1)
 g = gf(f, range);

@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \graphicspath{ {./figures/} }
 
 \title{TP MATLAB : Transformée de Fourier}
@@ -64,9 +65,39 @@ Nous considérons cette fois une fonction rectangle rendue périodique.
 \end{figure} \\
 La transformée de Fourier donne cette fois un sinus cardinal discrétisé.
 \subsubsection{Courbe de Gauss}
-La dernière fonction que nous allons analyser est la une courbe de Gauss dont l'équation est $x_6(t)=\exp(-\pi t^2)$
-\begin{figure}[h]
-\includegraphics[scale=0.6]{fig_gauss}
+La dernière fonction que nous allons analyser est une courbe de Gauss dont l'équation est $x_6(t)=\exp(-\pi t^2)$
+\paragraph{Calcul de la transformée de Fourier théorique}
+$$X_6(f) = \int_{-\infty}^{\infty}e^{-\pi t^2}e^{-j2\pi ft}dt=\int_{-\infty}^{\infty}e^{-(\pi t^2 +j2\pi ft)}dt$$. \\
+On pose alors
+$$\left\{\begin{array}{l}
+a^2=\pi t^2 \\
+2ab = j2\pi ft
+\end{array}\right.
+\Rightarrow
+\left\{
+\begin{array}{l}
+a^2=\pi t^2 \\
+b^2=-\pi f^2
+\end{array}
+\right.
+$$
+L'intégrale se réécrit
+$$\int_{-\infty}^{\infty}e^{-(a^2+2ab+b^2)+b^2}dt=\int_{-\infty}^{\infty}e^{-(a+b)^2+b^2}dt$$
+On effectue le changement de variable $X=a+b=\pm(\sqrt{\pi}t + j\sqrt{\pi}f)$ avec $\frac{dX}{dt}=\pm \sqrt{\pi}\Leftrightarrow dt=\frac{dX}{\pm\sqrt{\pi}}$ \\
+Ce qui donne
+$$\int_{-\infty}^{\infty}e^{-X^2-\pi f^2}\frac{dX}{\pm\sqrt{\pi}}=\frac{1}{\pm\sqrt{\pi}}e^{-\pi f^2}\int_{-\infty}^{\infty}e^{-X^2}dX=\pm e^{-\pi f^2}$$
+En admettant que $\int_{-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi}$
+\paragraph{Calcul de la transformée de Fourier avec MATLAB}
+\begin{figure}[b]
+\includegraphics[scale=0.52]{fig_gauss}
 \centering
 \end{figure}
+\subsection{Echantillonage et repliement de spectre}
+On se propose d'étudier la famille de fonctions paramétriques 
+$$g_f(t)=\sin(2\pi f t)+\sin(2\pi(f+\Delta f)t)+\sin(2\pi(f+2\Delta f)t)+2\sin(2\pi(f+3\Delta f)t)$$
+avec $\Delta f=50$
+\subsubsection{Calcul des spectres théoriques de $g_{1000}$ et $g_{2250}$}
+En exploitant la linéarité de la transformée de Fourier ainsi que le résultat $\sin(2\pi f_0 t)=\frac{1}{2j}[\delta(f-f_0)-\delta(f+f_0)]$, nous obtenons : \\
+$$G_{1000}=\frac{1}{2j}[\delta(f-1000)-\delta(f+1000)+\delta(f-1050)-\delta(f+1050)+\delta(f-1100)-\delta(f+1100)+2\delta(f-1150)-2\delta(f+1150)]$$
+\subsubsection{Spectres avec échantillonage}
 \end{document}
