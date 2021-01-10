@@ -82,24 +82,23 @@ saveas(f3d, 'figures/fig_dirac_deltat.png')
 
 %% Exponentielle complexe
 x4 = exp(1i*2*pi*f*range);
-fig_exp = figure('Name', 'Exponentielle complexe');
+f4 = figure('Name', 'Exponentielle complexe');
 
 subplot(2,2,1)
 plot(range, real(x4))
-title('Fonction : Partie Réelle')
+title('Exponentielle complexe : Partie Réelle')
 
 subplot(2,2,2)
 plot(range, imag(x4))
-title('Fonction : Partie Imaginaire')
+title('Exponentielle complexe : Partie Imaginaire')
 
 X4 = tfour(x4);
-subplot(2,2,3)
+subplot(2,2,[3,4])
 plot(freq, real(X4))
 title('Transformée de Fourier : Partie Réelle')
-
-subplot(2,2,4)
-plot(freq, imag(X4))
-title('Transformée de Fourier : Partie Imaginaire')
+axis([-20 20 0 1000])
+xticks([-20 -15 -10 -5 0 4 5 10 15 20])
+saveas(f4, 'figures/fig_exp.png')
 
 %% Fonction rectangle apériodique
 x5 = zeros(1, N);
@@ -109,7 +108,7 @@ for i=1:N
     end
 end
 
-fig_rect_aper = figure('Name', 'Fonction rectangle apériodique');
+f5 = figure('Name', 'Fonction rectangle apériodique');
 subplot(2,1,1)
 plot(range, x5);
 axis([-0.1 0.1 0 1.5])
@@ -120,6 +119,7 @@ X5 = tfour(x5);
 plot(freq, real(X5))
 axis([-500 500 -100 400])
 title('Transformée de Fourier de la fonction rectangle (partie réelle)')
+saveas(f5, 'figures/fig_rect.png')
 
 %% Fonction rectangle périodique
 x5p = ones(1,N);
@@ -132,7 +132,7 @@ for i=1:N
     end
 end
 
-fig_rect_per = figure('Name', 'Fonction rectangle périodique');
+f5p = figure('Name', 'Fonction rectangle périodique');
 subplot(2,1,1)
 plot(range, x5p)
 axis([-0.4 0.4 0 1.5])
@@ -143,10 +143,11 @@ X5p = tfour(x5p);
 plot(freq, real(X5p))
 axis([-500 500 -3500 17000])
 title('Transformée de Fourier de la fonction rectangle périodique (partie réelle)')
+saveas(f5p, 'figures/fig_rect_per.png')
 %% Courbe de Gauss
 x6 = exp(-pi*range.^2);
 
-fig_gaussienne = figure('Name', 'Courbe de Gauss');
+f6 = figure('Name', 'Courbe de Gauss');
 subplot(2,1,1)
 plot(range, x6)
 title('Courbe de Gauss')
@@ -155,4 +156,5 @@ subplot(2,1,2)
 X6 = real(tfour(x6));
 plot(freq, X6)
 axis([-5 5 0 3500])
-title('Transformée de Fourier de la gaussienne')
+title('Transformée de Fourier')
+saveas(f6, 'figures/fig_gauss.png')

@@ -39,8 +39,34 @@ Tandis qu'avec un décalage temporel $\Delta t$ non nul, nous obtenons les courb
 \includegraphics[scale=0.6]{fig_dirac_deltat}
 \centering
 \end{figure} \\
-Nous avons bien $Re(X_3(f))=\cos(2\pi f\Delta t)$ et $Im(X_3(f))=\sin(2\pi f\Delta t)$
+Ce qui correspond bien $Re(X_3(f))=\cos(2\pi f\Delta t)$ et $Im(X_3(f))=\sin(2\pi f\Delta t)$
 
 \subsubsection{Exponentielle complexe}
-On considère la fonction $x_4e^{j2\pi f t}$ qui a comme transformée de Fourier théorique
+On considère la fonction $x_4=e^{j2\pi f_0 t}$ qui a comme transformée de Fourier théorique $X_4=\delta(f-f_0)$.
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_exp}
+\centering
+\end{figure} \\
+La transformée de Fourier donne bien $\delta(f-f_0)$ (avec $f_0=4$ sur cette figure).
+
+\subsubsection{Foncion rectangle}
+\paragraph{Fonction rectangle apériodique}
+Nous allons analyser la fonction rectangle dont la transformée de Fourier théorique est un sinus cardinal.
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_rect}
+\centering
+\end{figure}
+\paragraph{Fonction rectangle périodique}
+Nous considérons cette fois une fonction rectangle rendue périodique.
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_rect_per}
+\centering
+\end{figure} \\
+La transformée de Fourier donne cette fois un sinus cardinal discrétisé.
+\subsubsection{Courbe de Gauss}
+La dernière fonction que nous allons analyser est la une courbe de Gauss dont l'équation est $x_6(t)=\exp(-\pi t^2)$
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_gauss}
+\centering
+\end{figure}
 \end{document}
