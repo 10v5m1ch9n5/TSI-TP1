@@ -14,8 +14,15 @@ Les signaux sont représentés sur l'intervalle $[-5,5]$. \\
 On fixe le nombre d'échantillons à $N=32768$. \\
 La période d'échantillonage vaut donc $T_e = 3,0518 * 10^{-4}$ et la fréquence d'échantillonage $f_e=3276,8$.11111
 \subsection{Echantillonage et spectre de fonctions usuelles}
+\subsubsection{Fonction constante}
+On considère la fonction $x_0(t)=42$ dont la transformée de Fourier théorique est $X_0(f)=\delta(f)$, il s'agit d'un nombre réel donc nous affichons uniquement la partie réelle de la transformée de Fourier calculée numériquement.
+\begin{figure}[h]
+\includegraphics[scale=0.5]{fig_const}
+\centering
+\end{figure}
 \subsubsection{Fonction cosinus}
 On considère la fonction $x_1(t)=\cos(2\pi f_0 t)$ avec $f_0=4$, sa transformée de Fourier théorique est $X_1(f)=\frac{1}{2}[\delta(f-f_0)+\delta(f+f_0)]$, il s'agit d'un nombre réel.
+
 \begin{figure}[h]
 \includegraphics[scale=0.63]{fig_cos}
 \centering
@@ -40,7 +47,7 @@ Tandis qu'avec un décalage temporel $\Delta t$ non nul, nous obtenons les courb
 \includegraphics[scale=0.6]{fig_dirac_deltat}
 \centering
 \end{figure} \\
-Ce qui correspond bien $Re(X_3(f))=\cos(2\pi f\Delta t)$ et $Im(X_3(f))=\sin(2\pi f\Delta t)$
+Ce qui correspond bien à $Re(X_3(f))=\cos(2\pi f\Delta t)$ et $Im(X_3(f))=\sin(2\pi f\Delta t)$
 
 \subsubsection{Exponentielle complexe}
 On considère la fonction $x_4=e^{j2\pi f_0 t}$ qui a comme transformée de Fourier théorique $X_4=\delta(f-f_0)$.
@@ -88,16 +95,35 @@ Ce qui donne
 $$\int_{-\infty}^{\infty}e^{-X^2-\pi f^2}\frac{dX}{\pm\sqrt{\pi}}=\frac{1}{\pm\sqrt{\pi}}e^{-\pi f^2}\int_{-\infty}^{\infty}e^{-X^2}dX=\pm e^{-\pi f^2}$$
 En admettant que $\int_{-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi}$
 \paragraph{Calcul de la transformée de Fourier avec MATLAB}
-\begin{figure}[b]
+Nous obtenons le spectre suivant :
+\begin{figure}[h]
 \includegraphics[scale=0.52]{fig_gauss}
 \centering
 \end{figure}
 \subsection{Echantillonage et repliement de spectre}
 On se propose d'étudier la famille de fonctions paramétriques 
 $$g_f(t)=\sin(2\pi f t)+\sin(2\pi(f+\Delta f)t)+\sin(2\pi(f+2\Delta f)t)+2\sin(2\pi(f+3\Delta f)t)$$
+
 avec $\Delta f=50$
 \subsubsection{Calcul des spectres théoriques de $g_{1000}$ et $g_{2250}$}
 En exploitant la linéarité de la transformée de Fourier ainsi que le résultat $\sin(2\pi f_0 t)=\frac{1}{2j}[\delta(f-f_0)-\delta(f+f_0)]$, nous obtenons : \\
 $$G_{1000}=\frac{1}{2j}[\delta(f-1000)-\delta(f+1000)+\delta(f-1050)-\delta(f+1050)+\delta(f-1100)-\delta(f+1100)+2\delta(f-1150)-2\delta(f+1150)]$$
+$$G_{2250}=\frac{1}{2j}[\delta(f-2250)-\delta(f+2250)+\delta(f-2300)-\delta(f+2300)+\delta(f-2350)-\delta(f+2350)+2\delta(f-2400)-2\delta(f+2400)]$$
+\newpage
 \subsubsection{Spectres avec échantillonage}
+Pour la fonction $g_{1000}$, nous obtenons le spectre suivant :
+\begin{figure}[h]
+\includegraphics[scale=0.5]{fig_g1}
+\centering
+\end{figure} \\
+Cela correspond à nos attentes, nous retrouvons bien des pics de fréquence aux valeurs $\pm1000$, $\pm1050$, $\pm1100$ et $\pm1150$.
+En revanche, pour la fonction $g_{2250}$, les pics de fréquences obtenus sont incorrects :
+\begin{figure}[h]
+\includegraphics[scale=0.5]{fig_g2}
+\centering
+\end{figure} \\
+Cela s'explique par le fait que la fréquence maximale du signal $f_{max}=2400\,\mathrm{Hz}$ soit supérieure à la moitié de la fréquence d'échantillonage $f_e=3276,8 \,\mathrm{Hz}$. Un phénomène de repliement de spectre se produit alors et cause l'apparition de fréquences parasites dans le signal.
+\section{Transmission par modulation d'amplitude}
+\section{Filtrages}
+\section{Localisation de formes par Corrélation}
 \end{document}

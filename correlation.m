@@ -1,6 +1,5 @@
 [im, map] = imread('images-ndg/ImageTest.png');
 %image(im)
-S = double(im);
 
 f_1 = zeros(1024);
 f_2 = zeros(1024);
@@ -36,9 +35,18 @@ F_NEG = fftshift(fft2(double(f_neg)));
 % Convolution
 conv = IM.*F_NEG;
 resultat = ifft2(fftshift(conv));
-resultat = (resultat/3570)*255;
+resultat = (resultat/3570)*255; % mise à l'échelle de 0 à 255
 image(resultat)
 colormap(map)
+
+compte = 0;
+for i=1:1024
+    for j=1:1024
+        if(resultat(i,j) > 250)
+            compte = compte + 1;
+        end
+    end
+end
 %%
 %{
 logIM = log(abs(IM)+1);

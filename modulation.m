@@ -17,13 +17,13 @@ end
 f1 = figure('Name', 'S1');
 subplot(2,1,1)
 plot(range, s_1)
-title('Signal s1 (représentation temporelle')
+title('Signal s1 (représentation temporelle)')
 
 S_1 = real(tfour(s_1));
 subplot(2,1,2)
 plot(freq, S_1)
 axis([-110 110 0 165000])
-title('TF de s1 (représentation fréquentielle')
+title('TF de s1 (représentation fréquentielle)')
 
 %% s_2
 s_2 = zeros(1, N);

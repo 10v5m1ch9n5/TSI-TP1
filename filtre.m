@@ -1,5 +1,7 @@
 [im, map] = imread('images-ndg/Thorg.bmp');
 K = 0.001;
+
+
 gauss = zeros(1024);
 for i=1:1024
     for j=1:1024
@@ -27,14 +29,3 @@ im_traitee = real(ifft2(fftshift(fft_img)));
 figure(2)
 image(im_traitee)
 colormap(map)
-
-%{
-subplot(2,2,1)
-image(real(fft_img))
-subplot(2,2,2)
-image(imag(fft_img))
-subplot(2,2,3)
-image(abs(fft_img))
-subplot(2,2,4)
-image(angle(fft_img))
-%}

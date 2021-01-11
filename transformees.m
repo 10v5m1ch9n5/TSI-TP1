@@ -13,11 +13,15 @@ mkdir figures
 x0 = 42 * ones(1,N);
 
 f0 = figure('Name', 'Constante');
+subplot(2,1,1)
 plot(range, x0);
+title('Fonction constante')
 
-fig_const_mod = figure('Name', 'TF de Constante');
+subplot(2,1,2)
 X0 = real(tfour(x0));
 plot(freq, X0);
+title('Transformée de Fourier de la fonction constante')
+saveas(f0, 'figures/fig_const.png')
 
 %% Fonction cosinus
 x1 = cos(2*pi*f*range);
