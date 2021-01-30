@@ -124,6 +124,23 @@ En revanche, pour la fonction $g_{2250}$, les pics de fréquences obtenus sont i
 \end{figure} \\
 Cela s'explique par le fait que la fréquence maximale du signal $f_{max}=2400\,\mathrm{Hz}$ soit supérieure à la moitié de la fréquence d'échantillonage $f_e=3276,8 \,\mathrm{Hz}$. Un phénomène de repliement de spectre se produit alors et cause l'apparition de fréquences parasites dans le signal.
 \section{Transmission par modulation d'amplitude}
+\subsection{Opération de modulation sur deux signaux}
+\subsubsection{Signaux étudiés}
+Nous allons moduler les deux signaux suivants :
+$$ s_1(t) = \sum_{n=1}^{10}n\cos(2\pi.10n.t)$$
+\begin{figure}[h]
+\includegraphics[scale=0.5]{fig_s1}
+\centering
+\end{figure}
+$$ s_2(t)=\sum_{n=1}^{10}(11-n)\cos(2\pi.10n.t)$$
+\begin{figure}[h]
+\includegraphics[scale=0.5]{fig_s2}
+\centering
+\end{figure}
+\subsubsection{Opération de modulation}
+Nous allons maintenant calculer le signal modulé $m(t)$ ayant la propriété de contenir tous les signaux $s_i(t)$. Voici son expression :
+$$m(t)=\sum_{i}s_i(t).\cos(2\pi f_i t)$$
+Les fréquences $f_i$ propres à chaque signal $s_i(t)$ sont appelées fréquences porteuses.
 \section{Filtrages}
 \section{Localisation de formes par Corrélation}
 \end{document}

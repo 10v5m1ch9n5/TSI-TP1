@@ -17,23 +17,30 @@ end
 f1 = figure('Name', 'S1');
 subplot(2,1,1)
 plot(range, s_1)
-title('Signal s1 (représentation temporelle)')
+title('Signal s_1 (représentation temporelle)')
 
 S_1 = real(tfour(s_1));
 subplot(2,1,2)
 plot(freq, S_1)
 axis([-110 110 0 165000])
-title('TF de s1 (représentation fréquentielle)')
-
+title('TF de s_1 (représentation fréquentielle)')
+saveas(f1, 'figures/fig_s1.png')
 %% s_2
 s_2 = zeros(1, N);
 for n=1:10
     s_2 = s_2 + (11-n)*cos(2*pi*10*n*range);
 end
+f2 = figure('Name', 'S2');
+subplot(2,1,1)
+plot(range, s_2)
+title('Signal s_2 (représentation temporelle)')
+
 S_2 = real(tfour(s_2));
+subplot(2,1,2)
 plot(freq, S_2)
 axis([-110 110 0 165000])
-
+title('Signal s_2 (représentation fréquentielle)')
+saveas(f2, 'figures/fig_s2.png');
 %% modulation
 cos_s1 = cos(2*pi*f_porteuse_1*range);
 cos_s2 = cos(2*pi*f_porteuse_2*range);
