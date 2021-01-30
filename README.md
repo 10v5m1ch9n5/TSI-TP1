@@ -15,7 +15,7 @@ TP de Traitement du Signal et des Images sur la Transformée de Fourier
 
 ### Démonstrations
 
-- Calcul de la TF de la gaussienne
+- Calcul de la TF de la gaussienne (vérifier)
 - Spectres théoriques des fonctions g
 - Valeur de f qui donne un simple sinus
 
