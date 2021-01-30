@@ -12,7 +12,7 @@
 \section{Transformée de Fourier discrète}
 Les signaux sont représentés sur l'intervalle $[-5,5]$. \\
 On fixe le nombre d'échantillons à $N=32768$. \\
-La période d'échantillonage vaut donc $T_e = 3,0518 * 10^{-4}$ et la fréquence d'échantillonage $f_e=3276,8$.11111
+La période d'échantillonage vaut donc $T_e = 3,0518 * 10^{-4}$ et la fréquence d'échantillonage $f_e=3276,8$.
 \subsection{Echantillonage et spectre de fonctions usuelles}
 \subsubsection{Fonction constante}
 On considère la fonction $x_0(t)=42$ dont la transformée de Fourier théorique est $X_0(f)=\delta(f)$, il s'agit d'un nombre réel donc nous affichons uniquement la partie réelle de la transformée de Fourier calculée numériquement.
@@ -137,10 +137,45 @@ $$ s_2(t)=\sum_{n=1}^{10}(11-n)\cos(2\pi.10n.t)$$
 \includegraphics[scale=0.5]{fig_s2}
 \centering
 \end{figure}
+
 \subsubsection{Opération de modulation}
 Nous allons maintenant calculer le signal modulé $m(t)$ ayant la propriété de contenir tous les signaux $s_i(t)$. Voici son expression :
 $$m(t)=\sum_{i}s_i(t).\cos(2\pi f_i t)$$
-Les fréquences $f_i$ propres à chaque signal $s_i(t)$ sont appelées fréquences porteuses.
+Les fréquences $f_i$ propres à chaque signal $s_i(t)$ sont appelées fréquences porteuses. \\
+Nous obtenons le résultat suivant pour $m(t)$ avec les signaux $s_1(t)$ et $s_2(t)$ vus précédemment portés par des fréquences $f_1=200$ et $f_2=500$ :
+\begin{figure}[h]
+\includegraphics[scale=0.6]{fig_modulation}
+\centering
+\end{figure}
+\paragraph{}
+Nous observons que le signal modulé en représentation fréquentielle contient les deux signaux centrés autour de leurs fréquences porteuses (et leurs opposés).
+
+\subsubsection{Opération de démodulation}
+Nous allons maintenant démoduler le signal $m(t)$ dans le but d'extraire un des signaux qu'il contient. \\
+En régle générale, le signal démodulé $d_i(t)$ associé à un signal $s_i(t)$ s'exprime ainsi :
+$$d_i(t)=m(t)\cos(2\pi f_i t)$$
+\newpage
+Voyons maintenant comment un signal $s_i(t)$ transparaît dans son démodulé respectif. Nous avons ici le spectre de $d_1(t)$ :
+\begin{figure}[h]
+\includegraphics[scale=0.5]{fig_d1}
+\centering
+\end{figure}
+Nous pouvons constater que le signal initial $s_1(t)$ se retrouve avec une amplitude diminuée pour les fréquences inférieures à $100\,\mathrm{Hz}$. Nous pouvons donc l'extraire en appliquant un filtre passe-bas au signal $d_1(t)$.
+
+\subsubsection{Précautions nécessaires pour éviter que les signaux diffusés se mélangent}
+\paragraph{}
+Dans l'exemple que nous avons étudié, nous avons pu constater que les signaux modulés $s_i(t)$ apparaissaient dans le signal centrés sur leur fréquence porteuse. C'est-à-dire que le signal se retrouvait en symétrie horizontale par rapport à l'axe $x=f_i$. Un signal modulé occupe donc d'après nos observations la bande de fréquences $[f_i-f_{max},f_i+f_{max}]$ avec $f_{max}$ la fréquence maximale de ce signal.
+\paragraph{}
+Pour éviter que les signaux se chevauchent, nous allons donc vouloir qu'au sein du signal modulé, les fréquences porteuses deux à deux aient une différence supérieure à la somme des fréquences maximales de leur signaux respectifs.
+\newpage
+Voici un cas limite avec le signal modulé étudié précédemment, où $s_1(t)$ et $s_2(t)$ sont sur le point de se superposer :
+\begin{figure}[h]
+\includegraphics[scale=0.7]{fig_modulation_limite}
+\centering
+\end{figure}
+\paragraph{}
+Nous avons utilisé $f_1=200\,\mathrm{Hz}$ et $f_2=401\,\mathrm{Hz}$ étant donné que la fréquence maximale de $s_1(t)$ et de $s_2(t)$ vaut $100\,\mathrm{Hz}$
+
 \section{Filtrages}
 \section{Localisation de formes par Corrélation}
 \end{document}
