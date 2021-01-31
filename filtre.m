@@ -1,5 +1,5 @@
 [im, map] = imread('images-ndg/Thorg.bmp');
-K = 0.001;
+K = 10;
 
 
 gauss = zeros(1024);
@@ -11,6 +11,12 @@ for i=1:1024
     end
 end
 
+
+fig_filtre3 = figure('Name', 'Fonction gaussienne');
+subplot(2,1,1)
+plot(gauss);
+title('Fonction gaussienne')
+
 fft_img = fft2(double(im));
 fft_img = fftshift(fft_img);
 
@@ -18,14 +24,19 @@ logIM = log(abs(fft_img)+1);
 maxi = max(max(logIM));
 mini = min(min(logIM));
 
-figure(2)
-image((logIM-mini)/(maxi-mini)*255)
-colormap(map)
+%figure(2)
+%image((logIM-mini)/(maxi-mini)*255)
+%colormap(map)
 
 % Traitements
 fft_img = fft_img.*gauss;
-
 im_traitee = real(ifft2(fftshift(fft_img)));
-figure(2)
-image(im_traitee)
+
+subplot(2,1,2)
+image(im_traitee);
+title('Image traitée par le filtre gaussien')
+
+%figure(2)
+%image(im_traitee)
 colormap(map)
+saveas(fig_filtre3, 'figures/fig_filtre3.png')

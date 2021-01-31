@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{ragged2e}
 \graphicspath{ {./figures/} }
 
 \title{TP MATLAB : Transformée de Fourier}
@@ -177,5 +178,59 @@ Voici un cas limite avec le signal modulé étudié précédemment, où $s_1(t)$
 Nous avons utilisé $f_1=200\,\mathrm{Hz}$ et $f_2=401\,\mathrm{Hz}$ étant donné que la fréquence maximale de $s_1(t)$ et de $s_2(t)$ vaut $100\,\mathrm{Hz}$
 
 \section{Filtrages}
+\paragraph{}
+\justifying
+A partir de la première partie, nous pouvons nous rendre compte qu'il est possible de construire des fonctions de transferts de filtre très utilisés en pratique. Plaçons-nous dans un espace fréquentiel 2D dont les axes seraient u et v, le filtre correspondant au filtrage d'une image 2D serait de la forme de :
+
+\paragraph{}
+\centering $H(u,v) = \exp(-K*(u^2+v^2))$
+\paragraph{}
+où K est une constante permettant de paramétrer les effets du filtre.
+
+\subsection {Les effets du filtre sur l'image selon la valeur de K}
+\paragraph{}
+\justifying
+En créant ce filtre et en l’appliquant à la matrice représentant l’image que l’on veut traiter, il est possible d’appliquer ce filtre à notre image.
+En effet, en faisant plusieurs tests sur la valeur de K on peut remarquer plusieurs choses :
+\begin{itemize}
+\item Plus la valeur de K augmente, plus l’image est floue. Si K est très grand, soit plus grand que 0.5, l’image devient complètement noire, soit aucune fréquence ne passe à travers le filtre, il les bloque toutes.
+\item Plus la valeur de K diminue, plus l’image est nette et les bruits sont diminués. En effet, l’image n’est pas plus détaillée, mais plus ‘lisse’. On obtient une bonne représentation de l’image à K = 0.00005.
+\item Si on trace la courbe représentant la fonction de transfert H, on voit que c’est une cloche. La largeur de la cloche diminue plus K augmente, et s’élargit plus K diminue. Elle atteint une limite d’une largeur entre [0,1000].
+\item On peut aussi remarquer que si K est très petit, se rapprochant fortement de 0, la courbe de fonction de transfert devient un trait horizontal à 1. C’est donc une fonction qui laisse toutes les fréquences entre 0 et 1000 passer. C’est donc un filtre permettant d’ignorer les fréquences hors de ces bornes, mais laisser passer toutes les autres (amplitude = 1).
+\end{itemize}
+\begin{figure}[h]
+\includegraphics[scale = 0.7] {fig_filtre1}
+\centering
+\caption{La fonction de transfert du filtre utilisée et l'image traitée avec K = 0.00005}
+\end{figure}
+\begin{figure}
+\includegraphics[scale = 0.7]{fig_filtre2}
+\centering
+\caption {La fonction de transfert du filtre utilisé et l'image traitée avec un K très petit}
+\end{figure}
+\begin{figure}
+\includegraphics[scale = 0.7]{fig_filtre3}
+\centering
+\caption {La fonction de transfert du filtre utilisé et l'image traitée avec un K très grand}
+\end{figure}
+\paragraph{}
+\newpage
+\justifying
+On remarque donc que cette fonction de transfert possède la forme du filtre gaussien. Grâce à nos observations nous pouvons conclure que ce filtre permet de réduire les bruits, et donc de ‘lisser’ l’image. 
+\paragraph{}
+En effet, dépendant de K on peut soit flouter l’image ou la lisser et effacer les bruits extérieurs. Plus K est grand, plus la largeur de la cloche de la fonction gaussienne est petite, moins de fréquences passent et donc plus l’image est floue. Au contraire, plus K est petit, plus la largeur de la cloche est grande et plus les fréquences peuvent passer (donc l’image est plus nette). Quand K est vraiment petit, on atteint une limite et il se rapproche d’un filtre idéal (toutes les fréquences passent et sont d’amplitude 1). 
+\paragraph{}
+On peut donc penser que ce filtre nous permet donc de réduire les bruits ou de fabriquer une image utilisée pour faire un $ masque flou $.
+\subsection{Sous-echantillonner l'image à traiter}
+\paragraph{}
+\justifying
+Lors d’un traitement d’une image, il se peut que celle-ci prenne beaucoup de place. Il est parfois préférable de diviser cette image en 4, soit de la sous-échantillonner en prenant un point sur 4 dans l’image. 
+\paragraph{}
+Cependant, cette méthode serait peu efficace car très peu représentative de la couleur actuelle des points. En prenant seulement un point sur 4, il serait difficile de reconstituer l’image telle quelle car on ne retrouverait pas du tout les mêmes couleurs. Il y aurait donc une forte dégradation de la représentation de l’image.
+\paragraph{}
+On pourrait recourir au filtre moyenne, qui remplace chaque pixel par la moyenne des valeurs des pixels adjacents et du pixel central. Ainsi, en prenant un point sur 4, on prendrait en fait un point qui aurait la moyenne des 4 points adjacents, ce qui serait beaucoup plus réaliste lors de la représentation de l’image.
+
+
+\newpage
 \section{Localisation de formes par Corrélation}
 \end{document}
