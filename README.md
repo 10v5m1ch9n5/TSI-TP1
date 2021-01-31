@@ -5,7 +5,7 @@ TP de Traitement du Signal et des Images sur la Transformée de Fourier
 
 ### I. La fonction Transformée de Fourier Discrète
 
-- Penser un protocole pour vérifier que `tfourinv()` donne bien la fonction d'origine
+- Penser un protocole pour vérifier que `tfourinv()` donne bien la fonction d'origine :heavy_check_mark:
 - Echantilloner sur un nombre non entier de périodes
 
 ### II. Echantillonage et aliasing
@@ -20,7 +20,7 @@ TP de Traitement du Signal et des Images sur la Transformée de Fourier
 
 ### IV. Filtrages
 
-- Tout à rédiger
+- Tout à rédiger :heavy_check_mark:
 
 ### V. Localisation de formes par Corrélation
 
