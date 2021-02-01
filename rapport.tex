@@ -108,8 +108,12 @@ $$g_f(t)=\sin(2\pi f t)+\sin(2\pi(f+\Delta f)t)+\sin(2\pi(f+2\Delta f)t)+2\sin(2
 avec $\Delta f=50$
 \subsection{Calcul des spectres théoriques de $g_{1000}$ et $g_{2250}$}
 En exploitant la linéarité de la transformée de Fourier ainsi que le résultat $\sin(2\pi f_0 t)=\frac{1}{2j}[\delta(f-f_0)-\delta(f+f_0)]$, nous obtenons : \\
-$$G_{1000}=\frac{1}{2j}[\delta(f-1000)-\delta(f+1000)+\delta(f-1050)-\delta(f+1050)+\delta(f-1100)-\delta(f+1100)+2\delta(f-1150)-2\delta(f+1150)]$$
-$$G_{2250}=\frac{1}{2j}[\delta(f-2250)-\delta(f+2250)+\delta(f-2300)-\delta(f+2300)+\delta(f-2350)-\delta(f+2350)+2\delta(f-2400)-2\delta(f+2400)]$$
+$$G_{1000}=\frac{1}{2j}[\delta(f-1000)-\delta(f+1000)+\delta(f-1050)-\delta(f+1050)+\delta(f-1100)$$
+\flushleft
+$$-\delta(f+1100)+2\delta(f-1150)-2\delta(f+1150)]$$
+$$G_{2250}=\frac{1}{2j}[\delta(f-2250)-\delta(f+2250)+\delta(f-2300)-\delta(f+2300)+\delta(f-2350)$$
+\flushleft
+$$-\delta(f+2350)+2\delta(f-2400)-2\delta(f+2400)]$$
 \newpage
 \subsection{Spectres avec échantillonage}
 Pour la fonction $g_{1000}$, nous obtenons le spectre suivant :
@@ -233,4 +237,51 @@ On pourrait recourir au filtre moyenne, qui remplace chaque pixel par la moyenne
 
 \newpage
 \section{Localisation de formes par Corrélation}
+\subsection{Méthode de localisation}
+\paragraph{}
+\justifying
+Dans cette partie, nous cherchons à localiser dans une image bruitée trois formes définies. Pour ce faire, nous allons utiliser une localisation par corrélation spatiale. Il s’agit de réaliser toutes les superpositions possibles de ces trois formes sur l’image de référence par translation, en déterminant à chaque fois le taux de ressemblance. Ce-dernier est maximum quand la correspondance est bonne pour une translation donnée. 
+\paragraph{}
+Pour un signal 2D discret, le taux de ressemblance pourra être calculé à partir de la formule : 
+$$Corr(l,c) = \sum_{n=i}\sum_{n = j} S(i,j).F(l+i,c+j)$$
+\paragraph{}
+\justifying
+Où S et F sont respectivement les matrices de couleurs qui représentent la forme à rechercher et l’image bruitée, et l et c deux paramètres spatiaux. 
+\paragraph{}
+Or, le calcul de la corrélation entre les deux signaux étant similaire à celui du produit de convolution, on préfèrera mesurer la ressemblance par la formule : 
+$$Conv(l,c) = \sum_{n=i}\sum_{n = j} S(i,j).F(l-i,c-j)$$
+\paragraph{}
+\justifying
+On remarquera en effet l’équivalence entre le calcul du produit de convolution dans la version spatiale et le calcul du produit simple dans l’espace fréquentiel, beaucoup plus efficace que la première formule proposée. 
+\subsection{Réalisation sur matlab}
+\paragraph{}
+\justifying
+On commence par encoder en dur les trois formes à rechercher avec des valeurs numériques : la couleur noire est représentée par la valeur 0 et la couleur blanche par la valeur 1. On complète les matrices avec des 0 pour qu’elles aient la même taille que la matrice représentant l’image de référence (1024*1024), car on effectue la corrélation sur des matrices de même taille. 
+\paragraph{}
+\justifying 
+	On calcule la transformée de Fourier des matrices représentant les formes à rechercher $(F_NEG)$ et l’image de référence (IM) pour obtenir leur représentation fréquentielle à l’aide de la fonction fft2, puis on réalise le produit terme à terme des matrices. On applique ensuite la transformée de Fourier inverse (fonction ifft2) sur la matrice resultat ainsi obtenue, et on réalise une mise à l’échelle pour que l’image en niveau de gris soit codée avec des valeurs entre 0 et 255. La variable compteur représente le nombre d’occurrences de la forme définie dans l’image bruitée. Elle est incrémentée de 1 chaque fois que l’indicateur de ressemblance est suffisamment élevé, c’est-à-dire pour chaque coefficient de la matrice resultat supérieur à 250.  
+\begin{figure}
+\includegraphics[scale = 0.7]{fig_corr}
+\centering
+\caption {Localisation de formes par corrélation}
+\end{figure}
+\subsection{Résultats}
+\centering
+\begin{tabular}{|c||c|}
+        \hline
+        Forme à retrouver & Nombre d'occurences \\ 
+        \hline
+        F1 & 1371\\ 
+        \hline
+	  F2 & 1322\\
+        \hline
+	  F3 & 1403\\
+	 \hline
+\end{tabular} 
+\flushleft
+\subsection {Avantages et limitations}
+\justifying
+Cette méthode de localisation des formes, bien que précise et rapide, présente certaines limitations. En effet, elle fonctionne uniquement si la forme à rechercher et l’image de référence se superposent parfaitement. Si on change juste un pixel à cette forme, elle ne sera plus reconnue. Il en va de même si la forme ou l’image bruitée a subi une transformation telle qu’une rotation ou un changement d’échelle. 
+
+
 \end{document}

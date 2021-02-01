@@ -67,7 +67,6 @@ end
 logIM = log(abs(IM)+1);
 maxi = max(max(logIM));
 mini = min(min(logIM));
-
 logF = log(abs(F_NEG)+1);
 maxiF = max(max(logF));
 miniF = min(min(logF));
