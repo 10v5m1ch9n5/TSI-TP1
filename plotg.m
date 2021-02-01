@@ -21,4 +21,3 @@ title(['Transformée de Fourier de g avec f=',num2str(f)])
 xticks([-2000 -1500 -1150 -1100 -1050 -1000 -500 0 500 1000 1050 1100 1150 1500 2000])
 xtickangle(70)
 end
-

@@ -36,3 +36,41 @@ for f=0:16380
     end
     %disp(nbPics)
 end
+
+%% Fréquences intéressantes
+%plotg(8117)
+%plotg(16309)
+%plotg(16334)
+%3201.8
+%3226.8
+
+f_sin = figure('Name', 'Repliement de spectre');
+a = -5;
+b = 5;
+N = 32768;
+Te = (b-a)/N;
+fe = 1/Te;
+range = a:Te:b-Te;
+freq = -fe/2:fe/N:(fe/2 - fe/N);
+
+f = 8142;
+g = gf(f, range);
+plot(range, g)
+axis([-0.02 0.02 -5 5])
+title('Fonction g(t)')
+
+hold on
+
+N = 0.5*32768;
+Te = (b-a)/N;
+fe = 1/Te;
+range = a:Te:b-Te;
+freq = -fe/2:fe/N:(fe/2 - fe/N);
+
+g = gf(f, range);
+plot(range, g)
+axis([-0.02 0.02 -5 5])
+title('Fonction g(t)')
+hold off
+saveas(f_sin, 'figures/fig_sin.png')
+

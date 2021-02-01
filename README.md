@@ -11,7 +11,7 @@ TP de Traitement du Signal et des Images sur la Transformée de Fourier
 ### II. Echantillonage et aliasing
 
 - Relire et détailler
-- Trouver une valeur de f qui donne un simple sinus (Alexandre)
+- Trouver une valeur de f qui donne un simple sinus :heavy_check_mark:
 
 ### III. Transmission par modulation d'amplitude
 

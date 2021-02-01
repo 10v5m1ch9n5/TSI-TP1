@@ -128,6 +128,28 @@ En revanche, pour la fonction $g_{2250}$, les pics de fréquences obtenus sont i
 \centering
 \end{figure} \\
 Cela s'explique par le fait que la fréquence maximale du signal $f_{max}=2400\,\mathrm{Hz}$ soit supérieure à la moitié de la fréquence d'échantillonage $f_e=3276,8 \,\mathrm{Hz}$. Un phénomène de repliement de spectre se produit alors et cause l'apparition de fréquences parasites dans le signal.
+\newpage
+
+\subsection{Etude des valeurs positives de $f$ pour lesquelles $g_f(t)$ est une sinusoïde simple}
+Nous avons procédé à la recherche de ses valeurs en analysant la transformée de Fourier de $g_f(t)$ avec MATLAB en itérant sur les valeurs de $f$.
+Pour $f=16334$, nous avons obtenu la courbe suivante :
+\begin{figure}[h]
+\includegraphics[scale=0.35]{fig_f16334}
+\centering
+\end{figure}
+\paragraph{}
+Les fréquences de $g_f(t)$ théoriques sont de l'ordre de 16400, elles ne sont donc pas dans l'intervalle sur lequel nous analysons les fréquences avec notre transformée de Fourier. Il n'y a qu'une fréquence parasite crée par le repliement spectral visible sur le spectre.
+\paragraph{}
+Cette figure montre le changement d'interprétation d'une même fonction pour des fréquences d'échantillonages différentes:
+\begin{figure}[h]
+\includegraphics[scale=0.46]{fig_sin}
+\centering
+\end{figure}
+\paragraph{}
+La courbe bleue représente la fonction théorique (encore incomplète) et la courbe rouge représente la même fonction échantillonée à une fréquence deux fois inférieure. Dans ce cas de figure, la fonction résulte, par chance, en un simple sinus.
+
+\newpage
+
 \section{Transmission par modulation d'amplitude}
 \subsection{Opération de modulation sur deux signaux}
 \subsubsection{Signaux étudiés}
