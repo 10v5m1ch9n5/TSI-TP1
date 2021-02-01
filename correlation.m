@@ -1,5 +1,10 @@
 [im, map] = imread('images-ndg/ImageTest.png');
-%image(im)
+f1 = figure('Name', 'Localisation de formes par Corrélation');
+subplot(1,3,1)
+x = 50;
+y = 50;
+image(im(1:x,1:y))
+title('Image de départ')
 
 f_1 = zeros(1024);
 f_2 = zeros(1024);
@@ -26,7 +31,9 @@ f_3(7, 4) = 1;
 f_3(7, 6) = 1;
 f_3(8, 5) = 1;
 
-f_neg = fliplr(flipud(f_3));
+f_select = f_1;
+
+f_neg = fliplr(flipud(f_select));
 f_neg(1024, 1024) = 0;
 
 IM = fftshift(fft2(double(im)));
@@ -36,13 +43,20 @@ F_NEG = fftshift(fft2(double(f_neg)));
 conv = IM.*F_NEG;
 resultat = ifft2(fftshift(conv));
 resultat = (resultat/3570)*255; % mise à l'échelle de 0 à 255
-image(resultat)
+subplot(1,3,2)
+image(resultat(1:x,1:y))
 colormap(map)
+title('Signal de corrélation')
+
+subplot(1,3,3)
+image(255*f_select(1:8,1:8))
+colormap(map)
+title('Motif recherché')
 
 compte = 0;
 for i=1:1024
     for j=1:1024
-        if(resultat(i,j) > 250)
+        if(resultat(i,j) > 254)
             compte = compte + 1;
         end
     end
