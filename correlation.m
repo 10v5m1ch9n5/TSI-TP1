@@ -52,6 +52,7 @@ subplot(1,3,3)
 image(255*f_select(1:8,1:8))
 colormap(map)
 title('Motif recherché')
+saveas(f1, 'figures/fig_corr.png')
 
 compte = 0;
 for i=1:1024
