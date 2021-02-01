@@ -25,7 +25,7 @@ title('Transformée de Fourier de la fonction constante')
 subplot(3,1,3)
 xo = real(tfourinv(X0));
 plot(range,xo)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 saveas(f0, 'figures/fig_const.png')
 
 %% Fonction cosinus
@@ -47,7 +47,7 @@ title('Transformée de Fourier du Cosinus (partie réelle)')
 subplot(3,1,3)
 x1 = real(tfourinv(X1));
 plot(range,x1)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 saveas(f1, 'figures/fig_cos.png')
 
 %% Fonction sinus
@@ -70,7 +70,7 @@ xlabel('Fréquence (Hz)')
 subplot(3,1,3)
 x2 = real(tfourinv(X2));
 plot(range,x2)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f2, 'figures/fig_sin.png')
 
@@ -88,7 +88,7 @@ xlabel('Fréquence (Hz)')
 subplot(2,1,2)
 x3 = real(tfourinv(X3));
 plot(range,x3)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f3, 'figures/fig_dirac_0.png')
 
@@ -112,7 +112,7 @@ xlabel('Fréquence (Hz)')
 subplot(3,1,3)
 x3 = real(tfourinv(X3d));
 plot(range,x3)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f3d, 'figures/fig_dirac_deltat.png')
 
@@ -139,7 +139,7 @@ xticks([-20 -15 -10 -5 0 4 5 10 15 20])
 subplot(3,1,3)
 x4 = real(tfourinv(X4));
 plot(range,x4)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f4, 'figures/fig_exp.png')
 
@@ -168,7 +168,7 @@ subplot(3,1,3)
 x5 = real(tfourinv(X5));
 plot(range,x5)
 axis([-0.1 0.1 0 1.5])
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f5, 'figures/fig_rect.png')
 
@@ -200,7 +200,7 @@ subplot(3,1,3)
 x5p = real(tfourinv(X5p));
 plot(range,x5p)
 axis([-0.4 0.4 0 1.5])
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f5p, 'figures/fig_rect_per.png')
 %% Courbe de Gauss
@@ -221,6 +221,6 @@ title('Transformée de Fourier')
 subplot(3,1,3)
 x6 = real(tfourinv(X6));
 plot(range,x6)
-title('Récupération de la fonction avec fourinv');
+title('Récupération de la fonction avec tfourinv');
 
 saveas(f6, 'figures/fig_gauss.png')
