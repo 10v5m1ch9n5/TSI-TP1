@@ -224,21 +224,3 @@ plot(range,x6)
 title('Récupération de la fonction avec fourinv');
 
 saveas(f6, 'figures/fig_gauss.png')
-
-%% Echantillonage sur un nombre non entier de périodes (fonction cosinus)
-range(1:N+1) = 1;
-freq = (-fe/2):(fe/N):(fe/2);
-x1 = cos(2*pi*f*range);
-
-f1 = figure('Name', 'Cosinus');
-subplot(2,1,1)
-plot(range, x1);
-xlabel('Temps (s)')
-title('Fonction Cosinus')
-
-subplot(2,1,2)
-X1 = real(tfour(x1));
-plot(freq, X1);
-axis([-10 10 -10 100])
-xlabel('Fréquence (Hz)')
-title('Transformée de Fourier du Cosinus (partie réelle)')
