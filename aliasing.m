@@ -40,9 +40,12 @@ end
 %% Fréquences intéressantes
 %plotg(8117)
 %plotg(16309)
-%plotg(16334)
 %3201.8
 %3226.8
+
+f16334 = figure('Name', 'Valeur de f donnant un simple sinus');
+plotg(16334)
+saveas(f16334, 'figures/fig_f16334.png')
 
 f_sin = figure('Name', 'Repliement de spectre');
 a = -5;
